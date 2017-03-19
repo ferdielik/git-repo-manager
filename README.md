@@ -1,11 +1,12 @@
-**Git Repo Manager**
+# Git Repo Manager #
+
 Manage git repositories collectively 
 
 
-*Usage*
-main.rb <properties-file-path> [-dry-run|-d|-r|-h]
+**Usage**
+<pre>main.rb <properties-file-path> [-dry-run|-d|-r|-h] </pre>
 
-*Sample properties file* <br/>
+**Sample properties file**
 
 <pre>
 root_file: /mnt/c/Users/stuff/Desktop 
@@ -24,7 +25,7 @@ repos:
         - https://github.com/ferdielik/js-urlize
 </pre>
 
-Commands
+** Commands **
 <pre>
 Usage: main.rb <properties> [options]
         --dry-run                    Dry Run
