@@ -1,3 +1,4 @@
+#!/usr/bin/ruby
 require 'yaml'
 require 'optparse'
 
@@ -117,6 +118,26 @@ def reset_all(repos)
   end
 end
 
+def status_all(repos)
+  repos.each do |repo|
+    puts
+    puts
+    puts '---------------------------------'
+    puts repo.parents_text.green + repo.repo_name.green
+    puts '---------------------------------'
+    repo.run_git_command 'status'
+  end
+end
+
+def commit_push(repos)
+  repos.each do |repo|
+    puts repo.parents_text.green + repo.repo_name.green
+    repo.run_git_command 'add .'
+    repo.run_git_command 'commit -am "auto commit"'
+    repo.run_git_command 'push'
+  end
+end
+
 def update(repos)
   repos.each do |repo|
     puts repo.parents_text.green + repo.repo_name.green
@@ -141,6 +162,14 @@ parser = OptionParser.new do |opts|
 
   opts.on('-r', '--reset-repositories', 'Reset Repositories') do
     reset_all(all_repos)
+  end
+
+  opts.on('-s', '--status-repositories', 'Status Repositories') do
+    status_all(all_repos)
+  end
+
+  opts.on('--commit-push', 'All Commit Push') do
+    commit_push(all_repos)
   end
 
   opts.on('-h', '--help', 'Displays Help') do
